@@ -9,7 +9,7 @@ function Login() {
 
   const handleLogin = async () => {
     try {
-      await axios.post("http://localhost:5000/login", { name, phone });
+      await axios.post("https://node-react-backend.vercel.app/login", { name, phone });
       navigate("/customer", { state: { name, phone } });
     } catch (error) {
       console.error("Login failed", error);

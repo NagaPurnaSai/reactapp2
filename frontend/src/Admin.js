@@ -14,13 +14,13 @@ function Admin() {
   }, []);
 
   const fetchOrders = () => {
-    axios.get("http://localhost:5000/orders")
+    axios.get("https://node-react-backend.vercel.app/orders")
       .then((res) => setOrders(res.data))
       .catch((err) => console.error("Error fetching orders", err));
   };
 
   const fetchJuices = () => {
-    axios.get("http://localhost:5000/juices")
+    axios.get("https://node-react-backend.vercel.app/juices")
       .then((res) => setJuices(res.data))
       .catch((err) => console.error("Error fetching juices", err));
   };
@@ -28,7 +28,7 @@ function Admin() {
   const addJuice = () => {
     if (!newJuice.name || !newJuice.price) return alert("Please enter all fields");
 
-    axios.post("http://localhost:5000/juices", newJuice)
+    axios.post("https://node-react-backend.vercel.app/juices", newJuice)
       .then(() => {
         fetchJuices();
         setNewJuice({ name: "", price: "" });
@@ -37,7 +37,7 @@ function Admin() {
   };
 
   const deleteJuice = (id) => {
-    axios.delete(`http://localhost:5000/juices/${id}`)
+    axios.delete(`https://node-react-backend.vercel.app/juices/${id}`)
       .then(() => fetchJuices())
       .catch((err) => console.error("Error deleting juice", err));
   };
@@ -47,7 +47,7 @@ function Admin() {
 
     if (!orderToComplete) return;
 
-    axios.delete(`http://localhost:5000/orders/${id}`)
+    axios.delete(`https://node-react-backend.vercel.app/orders/${id}`)
       .then(() => {
         setOrders(orders.filter(order => order.id !== id)); // Remove from active orders
         setCompletedOrders([...completedOrders, orderToComplete]); // Add to completed orders
